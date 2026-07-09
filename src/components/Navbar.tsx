@@ -35,14 +35,20 @@ export function Navbar() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex-shrink-0 relative z-10 flex items-center gap-3 group">
+          <a href="#" className="flex-shrink-0 relative z-10 flex items-center gap-4 group">
             <div className={`absolute inset-0 bg-[#4e3322]/80 blur-lg rounded-full scale-125 transition-all duration-500 ${isScrolled ? 'opacity-80 scale-110' : 'opacity-100'}`}></div>
             <img 
-              src="https://i.ibb.co/yBNBLVPR/logo.png" 
+              src="https://plain-apac-prod-public.komododecks.com/202607/09/yHB01SaYZIWWnYh9A0v0/image.png" 
               alt="Niwasa Homestay" 
-              className={`relative z-10 transition-all duration-500 ${isScrolled ? 'h-[4.2rem] md:h-[4.8rem] drop-shadow-sm' : 'h-24 md:h-[7.2rem] drop-shadow-[0_0_20px_rgba(78,51,34,0.9)]'} w-auto object-contain group-hover:scale-105`} 
+              className={`relative z-10 transition-all duration-500 ${isScrolled ? 'h-11 md:h-12 drop-shadow-sm' : 'h-16 md:h-[4.6rem] drop-shadow-[0_0_20px_rgba(78,51,34,0.9)]'} w-auto object-contain group-hover:scale-105`} 
               loading="eager"
             />
+            <span 
+              className={`relative z-10 transition-all duration-500 tracking-[0.2em] ${isScrolled ? 'text-base md:text-xl text-ink' : 'text-lg md:text-2xl text-paper drop-shadow-[0_0_10px_rgba(78,51,34,0.9)]'}`} 
+              style={{ fontFamily: '"Loretta Display Medium", "Loretta Display", "Playfair Display", serif', fontWeight: 500 }}
+            >
+              NIWASA
+            </span>
           </a>
 
           {/* Desktop Nav */}

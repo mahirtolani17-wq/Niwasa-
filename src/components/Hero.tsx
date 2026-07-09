@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Play } from 'lucide-react';
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [showPlayButton, setShowPlayButton] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -35,7 +33,7 @@ export function Hero() {
         }
       }).catch(error => {
         console.warn("Autoplay was blocked or failed:", error);
-        setShowPlayButton(true);
+        // We will unlock it on first touch instead of showing a play button
       });
     }
   }, [isReducedMotion]);
@@ -89,9 +87,25 @@ export function Hero() {
     let touchStartY = 0;
     let scrollStartY = 0;
 
+    let hasUnlockedVideo = false;
+
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
       scrollStartY = window.scrollY;
+      
+      // Unlock video on first touch if autoplay failed
+      if (!hasUnlockedVideo && video) {
+        hasUnlockedVideo = true;
+        video.muted = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            if (!isReducedMotion) video.pause();
+          }).catch(() => {
+            // ignore
+          });
+        }
+      }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -136,28 +150,6 @@ export function Hero() {
           {/* Fallback for H.264 MP4 */}
           <source src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" type="video/mp4" />
         </video>
-
-        {/* Fallback Play Button */}
-        {showPlayButton && (
-          <div className="absolute inset-0 z-50 flex items-center justify-center bg-ink/40 backdrop-blur-sm">
-            <button 
-              onClick={() => {
-                const video = videoRef.current;
-                if (video) {
-                  video.muted = true;
-                  video.play().then(() => {
-                    setShowPlayButton(false);
-                    if (!isReducedMotion) video.pause();
-                  });
-                }
-              }}
-              className="p-6 rounded-full bg-accent text-paper hover:scale-110 transition-transform shadow-xl flex items-center justify-center"
-              aria-label="Play video"
-            >
-              <Play className="w-8 h-8 fill-current ml-1" />
-            </button>
-          </div>
-        )}
         
         {/* Scrim for contrast to ensure text is legible over the video */}
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink/80" />

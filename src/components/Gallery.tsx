@@ -73,11 +73,9 @@ export function Gallery() {
                 loading="lazy"
               />
               
-              {/* Glass caption */}
-              <div className="absolute bottom-6 left-6 right-6 z-20">
-                <div className="glass px-6 py-4 rounded-xl text-paper flex items-center justify-center text-center">
-                  <p className="font-serif text-xl shadow-sm drop-shadow-md">{img.title}</p>
-                </div>
+              {/* Text caption */}
+              <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center">
+                  <p className="font-serif text-2xl text-paper drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] tracking-wide">{img.title}</p>
               </div>
             </motion.div>
           ))}
