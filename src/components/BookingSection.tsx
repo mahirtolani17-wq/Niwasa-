@@ -12,12 +12,16 @@ export function BookingSection() {
           
           {/* Location & Info */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            }}
             className="flex flex-col space-y-10"
           >
-            <div>
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
               <div className="inline-flex items-center gap-3 mb-4">
                 <span className="text-accent uppercase tracking-widest text-sm font-medium">Plan Your Visit</span>
                 <span className="h-px w-12 bg-accent/50 block" />
@@ -26,10 +30,10 @@ export function BookingSection() {
               <p className="text-ink/70 text-lg font-light max-w-md">
                 Find us nestled away from the city noise, yet close enough to explore the beauty of Udaipur.
               </p>
-            </div>
+            </motion.div>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="flex items-start gap-4">
                 <div className="p-3 bg-primary/20 rounded-full text-accent mt-1">
                   <MapPin size={20} />
                 </div>
@@ -41,9 +45,9 @@ export function BookingSection() {
                     Rajasthan 313001
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="flex items-start gap-4">
                 <div className="p-3 bg-primary/20 rounded-full text-accent mt-1">
                   <Clock size={20} />
                 </div>
@@ -54,9 +58,9 @@ export function BookingSection() {
                     Check-out: 11:00 AM
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="flex items-start gap-4">
                 <div className="p-3 bg-primary/20 rounded-full text-accent mt-1">
                   <Languages size={20} />
                 </div>
@@ -64,16 +68,17 @@ export function BookingSection() {
                   <h4 className="font-serif text-xl text-ink mb-2">Languages</h4>
                   <p className="text-ink/70 font-light">English, Hindi</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Map Placeholder */}
-            <div className="glass-panel p-2 rounded-3xl w-full h-64 overflow-hidden shadow-lg mt-4 relative group">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="glass-panel p-2 rounded-3xl w-full h-64 overflow-hidden shadow-lg mt-4 relative group">
               <div className="absolute inset-0 bg-ink/5 group-hover:bg-transparent transition-colors z-10" />
               <img 
                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" 
                 alt="Map View Placeholder" 
                 className="w-full h-full object-cover rounded-2xl opacity-80"
+                loading="lazy"
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="glass px-6 py-3 rounded-full text-ink font-medium shadow-xl flex items-center gap-2">
@@ -81,22 +86,26 @@ export function BookingSection() {
                   View on Google Maps
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Booking Info */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            }}
             className="glass-panel p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative flex flex-col justify-center"
           >
-            <h3 className="text-3xl font-serif text-ink mb-6 text-center">Book Your Stay</h3>
-            <p className="text-ink/70 mb-10 font-light text-center">
+            <motion.h3 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-3xl font-serif text-ink mb-6 text-center">Book Your Stay</motion.h3>
+            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-ink/70 mb-10 font-light text-center">
               We are excited to host you. Please use one of our trusted booking partners to reserve your dates, or reach out to us directly for any special requests.
-            </p>
+            </motion.p>
             
-            <div className="flex flex-col gap-4 mb-10">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col gap-4 mb-10">
               <a 
                 href="https://www.agoda.com/niwasa/hotel/udaipur-in.html?countryId=35&finalPriceView=1&isShowMobileAppPrice=false&cid=1844160&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2026-09-24&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=INR&isFreeOccSearch=false&los=1&searchrequestid=a857beef-3bb0-457d-a58e-4edb589e5257&ds=wStwqjYrEKdg55F4" 
                 target="_blank" 
@@ -124,9 +133,9 @@ export function BookingSection() {
                 <span>Book on MakeMyTrip</span>
                 <span className="text-accent group-hover:translate-x-1 transition-transform">→</span>
               </a>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 border-t border-primary/30 pt-8">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col sm:flex-row items-center justify-center gap-4 border-t border-primary/30 pt-8">
               <span className="text-ink/60 text-sm font-medium w-full sm:w-auto text-center">Contact us directly:</span>
               <div className="flex gap-4">
                 <a href="#" className="flex items-center gap-2 glass px-5 py-3 rounded-full text-ink hover:bg-white/50 transition-all shadow-sm hover:shadow-md">
@@ -138,7 +147,7 @@ export function BookingSection() {
                   <span className="text-sm font-medium">Call Us</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
           
         </div>

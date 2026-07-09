@@ -42,18 +42,22 @@ export function Reviews() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            }}
             className="max-w-xl"
           >
-            <div className="inline-flex items-center gap-3 mb-4">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-flex items-center gap-3 mb-4">
               <span className="text-accent uppercase tracking-widest text-sm font-medium">Guest Experiences</span>
               <span className="h-px w-12 bg-accent/50 block" />
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-ink mb-6">What They Say</h2>
+            </motion.div>
+            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-3xl md:text-4xl lg:text-5xl font-serif text-ink mb-6">What They Say</motion.h2>
             
-            <div className="flex items-center gap-4 bg-paper/50 inline-flex px-6 py-3 rounded-full border border-primary/20">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-4 bg-paper/50 inline-flex px-6 py-3 rounded-full border border-primary/20">
               <div className="flex text-accent">
                 {[1, 2, 3, 4].map(i => <Star key={i} size={20} fill="currentColor" />)}
                 <div className="relative">
@@ -66,7 +70,7 @@ export function Reviews() {
               <p className="text-sm font-medium text-ink/80">
                 <span className="text-ink font-bold text-lg">4.5</span> / 5 from 17 Google reviews
               </p>
-            </div>
+            </motion.div>
           </motion.div>
           
           <motion.button 

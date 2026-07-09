@@ -31,17 +31,21 @@ export function Gallery() {
     <section id="gallery" className="py-16 md:py-24 overflow-hidden bg-paper">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+          }}
           className="flex justify-between items-end"
         >
           <div>
-            <div className="inline-flex items-center gap-3 mb-4">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-flex items-center gap-3 mb-4">
               <span className="text-accent uppercase tracking-widest text-sm font-medium">A Glimpse</span>
               <span className="h-px w-12 bg-accent/50 block" />
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-ink">Spaces to Unwind</h2>
+            </motion.div>
+            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-3xl md:text-4xl lg:text-5xl font-serif text-ink">Spaces to Unwind</motion.h2>
           </div>
         </motion.div>
       </div>
@@ -66,6 +70,7 @@ export function Gallery() {
                 src={img.src} 
                 alt={img.title} 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                loading="lazy"
               />
               
               {/* Glass caption on hover */}

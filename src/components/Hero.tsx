@@ -92,23 +92,30 @@ export function Hero() {
         {/* Content Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: showOverlay || isReducedMotion ? 1 : 0, y: showOverlay || isReducedMotion ? 0 : 20 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial="hidden"
+            animate={showOverlay || isReducedMotion ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.2, ease: "easeOut" }
+              }
+            }}
             className="flex flex-col items-center max-w-2xl text-center"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-paper font-serif mb-6 leading-tight drop-shadow-lg">
+            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-paper font-serif mb-6 leading-tight drop-shadow-lg">
               Quiet Luxury in the Heart of Udaipur
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-paper font-sans mb-10 font-light tracking-wide max-w-lg drop-shadow-lg">
+            </motion.h1>
+            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }} className="text-lg sm:text-xl md:text-2xl text-paper font-sans mb-10 font-light tracking-wide max-w-lg drop-shadow-lg">
               A serene boutique homestay blending home comfort with handcrafted elegance.
-            </p>
-            <a 
+            </motion.p>
+            <motion.a 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
               href="#book"
               className="inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-medium rounded-full bg-accent text-paper hover:bg-accent/90 transition-all hover:scale-105 hover:shadow-xl shadow-lg hover:shadow-accent/20"
             >
               Book Your Stay
-            </a>
+            </motion.a>
           </motion.div>
         </div>
         

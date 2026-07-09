@@ -31,16 +31,17 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div 
           className={`relative flex items-center justify-between rounded-2xl px-6 py-4 transition-all duration-500 ${
-            isScrolled ? 'glass shadow-lg bg-paper/80' : 'bg-transparent'
+            isScrolled ? 'glass shadow-lg bg-paper/80 overflow-hidden' : 'bg-transparent'
           }`}
         >
           {/* Logo */}
           <a href="#" className="flex-shrink-0 relative z-10 flex items-center gap-3 group">
-            <div className="absolute inset-0 bg-[#4e3322]/80 blur-xl rounded-full scale-[2.0] group-hover:bg-[#4e3322] transition-colors"></div>
+            <div className={`absolute inset-0 bg-[#4e3322]/80 blur-xl rounded-full scale-[1.5] transition-all duration-500 ${isScrolled ? 'opacity-100 scale-110 blur-lg' : 'opacity-100 group-hover:bg-[#4e3322]'}`}></div>
             <img 
               src="https://i.ibb.co/yBNBLVPR/logo.png" 
               alt="Niwasa Homestay" 
-              className={`relative z-10 transition-all duration-500 ${isScrolled ? 'h-[4.2rem] md:h-[4.8rem]' : 'h-24 md:h-[7.2rem]'} w-auto object-contain drop-shadow-[0_0_20px_rgba(78,51,34,0.9)] group-hover:scale-105`} 
+              className={`relative z-10 transition-all duration-500 ${isScrolled ? 'h-[4.2rem] md:h-[4.8rem] drop-shadow-sm' : 'h-24 md:h-[7.2rem] drop-shadow-[0_0_20px_rgba(78,51,34,0.9)]'} w-auto object-contain group-hover:scale-105`} 
+              loading="eager"
             />
           </a>
 

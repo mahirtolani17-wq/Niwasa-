@@ -43,11 +43,7 @@ const AMENITIES = [
 // Flat list for the highlighted ones
 const TOP_AMENITIES = [
   { name: 'Outdoor Pool', icon: Waves },
-  { name: 'Free Wi-Fi', icon: Wifi },
-  { name: 'Free Breakfast', icon: Coffee },
-  { name: 'Air Conditioning', icon: Wind },
-  { name: 'Daily Housekeeping', icon: Sparkles },
-  { name: 'Private Bathrooms', icon: Bath }
+  { name: 'Free Wi-Fi', icon: Wifi }
 ];
 
 export function Amenities() {
@@ -93,7 +89,7 @@ export function Amenities() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
           {TOP_AMENITIES.map((item, idx) => (
             <motion.div 
               key={item.name}
