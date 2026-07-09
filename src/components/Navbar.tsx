@@ -36,11 +36,11 @@ export function Navbar() {
         >
           {/* Logo */}
           <a href="#" className="flex-shrink-0 relative z-10 flex items-center gap-3 group">
-            <div className="absolute inset-0 bg-[#4e3322]/40 blur-2xl rounded-full scale-150 group-hover:bg-[#4e3322]/60 transition-colors"></div>
+            <div className="absolute inset-0 bg-[#4e3322]/80 blur-xl rounded-full scale-[2.0] group-hover:bg-[#4e3322] transition-colors"></div>
             <img 
               src="https://i.ibb.co/yBNBLVPR/logo.png" 
               alt="Niwasa Homestay" 
-              className={`relative z-10 transition-all duration-500 ${isScrolled ? 'h-[4.2rem] md:h-[4.8rem]' : 'h-24 md:h-[7.2rem]'} w-auto object-contain drop-shadow-[0_0_15px_rgba(78,51,34,0.6)] group-hover:scale-105`} 
+              className={`relative z-10 transition-all duration-500 ${isScrolled ? 'h-[4.2rem] md:h-[4.8rem]' : 'h-24 md:h-[7.2rem]'} w-auto object-contain drop-shadow-[0_0_20px_rgba(78,51,34,0.9)] group-hover:scale-105`} 
             />
           </a>
 
