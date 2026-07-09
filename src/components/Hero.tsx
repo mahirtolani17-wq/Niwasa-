@@ -33,12 +33,10 @@ export function Hero() {
       });
     }
 
-    const handleScroll = () => {
+    const updateVideoProgress = (scrollY: number) => {
       const container = containerRef.current;
-      
       if (!video || !container || !isVideoLoaded || isNaN(video.duration)) return;
       
-      const scrollY = window.scrollY;
       const containerTop = container.offsetTop;
       const containerHeight = container.offsetHeight;
       const windowHeight = window.innerHeight;
@@ -60,13 +58,38 @@ export function Hero() {
       });
     };
 
+    const handleScroll = () => {
+      updateVideoProgress(window.scrollY);
+    };
+
+    let touchStartY = 0;
+    let scrollStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+      scrollStartY = window.scrollY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const currentY = e.touches[0].clientY;
+      const deltaY = touchStartY - currentY;
+      
+      // Calculate vertical distance ratio to simulate precise mouse-wheel-style scrubbing
+      const simulatedScrollY = scrollStartY + deltaY;
+      updateVideoProgress(simulatedScrollY);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
     
     // Initial call
     if (isVideoLoaded) handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, [isReducedMotion]);
