@@ -72,7 +72,13 @@ export function BookingSection() {
             </div>
 
             {/* Map Placeholder */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="glass-panel p-2 rounded-3xl w-full h-64 overflow-hidden shadow-lg mt-4 relative group">
+            <motion.a 
+              href="https://maps.app.goo.gl/XDoFtmHsoiX8koef9?g_st=ic"
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} 
+              className="block glass-panel p-2 rounded-3xl w-full h-64 overflow-hidden shadow-lg mt-4 relative group"
+            >
               <div className="absolute inset-0 bg-ink/5 group-hover:bg-transparent transition-colors z-10" />
               <img 
                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" 
@@ -81,12 +87,12 @@ export function BookingSection() {
                 loading="lazy"
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="glass px-6 py-3 rounded-full text-ink font-medium shadow-xl flex items-center gap-2">
+                <div className="glass px-6 py-3 rounded-full text-ink font-medium shadow-xl flex items-center gap-2 group-hover:bg-white group-hover:scale-105 transition-all">
                   <MapPin size={16} className="text-accent" />
                   View on Google Maps
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           </motion.div>
 
           {/* Booking Info */}
@@ -133,20 +139,6 @@ export function BookingSection() {
                 <span>Book on MakeMyTrip</span>
                 <span className="text-accent group-hover:translate-x-1 transition-transform">→</span>
               </a>
-            </motion.div>
-
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col sm:flex-row items-center justify-center gap-4 border-t border-primary/30 pt-8">
-              <span className="text-ink/60 text-sm font-medium w-full sm:w-auto text-center">Contact us directly:</span>
-              <div className="flex gap-4">
-                <a href="#" className="flex items-center gap-2 glass px-5 py-3 rounded-full text-ink hover:bg-white/50 transition-all shadow-sm hover:shadow-md">
-                  <MessageCircle size={18} className="text-[#25D366]" />
-                  <span className="text-sm font-medium">WhatsApp</span>
-                </a>
-                <a href="#" className="flex items-center gap-2 glass px-5 py-3 rounded-full text-ink hover:bg-white/50 transition-all shadow-sm hover:shadow-md">
-                  <Phone size={18} className="text-accent" />
-                  <span className="text-sm font-medium">Call Us</span>
-                </a>
-              </div>
             </motion.div>
           </motion.div>
           

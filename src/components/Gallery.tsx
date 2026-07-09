@@ -73,10 +73,10 @@ export function Gallery() {
                 loading="lazy"
               />
               
-              {/* Glass caption on hover */}
-              <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-20">
+              {/* Glass caption */}
+              <div className="absolute bottom-6 left-6 right-6 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-20">
                 <div className="glass px-6 py-4 rounded-xl text-paper">
-                  <p className="font-serif text-xl">{img.title}</p>
+                  <p className="font-serif text-xl shadow-sm drop-shadow-md">{img.title}</p>
                 </div>
               </div>
             </motion.div>

@@ -36,7 +36,7 @@ export function Navbar() {
         >
           {/* Logo */}
           <a href="#" className="flex-shrink-0 relative z-10 flex items-center gap-3 group">
-            <div className={`absolute inset-0 bg-[#4e3322]/80 blur-xl rounded-full scale-[1.5] transition-all duration-500 ${isScrolled ? 'opacity-100 scale-110 blur-lg' : 'opacity-100 group-hover:bg-[#4e3322]'}`}></div>
+            <div className={`absolute inset-0 bg-[#4e3322]/80 blur-lg rounded-full scale-125 transition-all duration-500 ${isScrolled ? 'opacity-80 scale-110' : 'opacity-100'}`}></div>
             <img 
               src="https://i.ibb.co/yBNBLVPR/logo.png" 
               alt="Niwasa Homestay" 
