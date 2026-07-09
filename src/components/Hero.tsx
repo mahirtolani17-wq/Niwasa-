@@ -70,6 +70,8 @@ export function Hero() {
       // Update overlay visibility at ~95% scrubbed progress
       setShowOverlay(progress > 0.95);
       
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      
       // Smooth update with rAF
       animationFrameId = requestAnimationFrame(() => {
         if (video.duration) {
@@ -146,9 +148,9 @@ export function Hero() {
           poster="https://images.unsplash.com/photo-1542314831-c6a4d14b4f62?q=80&w=2000&auto=format&fit=crop"
         >
           {/* Mobile-optimized breakpoint source */}
-          <source media="(max-width: 768px)" src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" type="video/mp4" />
+          <source media="(max-width: 768px)" src="https://videotourl.com/videos/1783593869338-45849232-3c29-47ed-8b3e-b417c491fbc1.mp4" type="video/mp4" />
           {/* Fallback for H.264 MP4 */}
-          <source src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" type="video/mp4" />
+          <source src="https://videotourl.com/videos/1783593869338-45849232-3c29-47ed-8b3e-b417c491fbc1.mp4" type="video/mp4" />
         </video>
         
         {/* Scrim for contrast to ensure text is legible over the video */}

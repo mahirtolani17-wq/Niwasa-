@@ -3,14 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React, { Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Amenities } from './components/Amenities';
-import { Gallery } from './components/Gallery';
-import { Reviews } from './components/Reviews';
-import { BookingSection } from './components/BookingSection';
-import { Footer } from './components/Footer';
+
+const About = React.lazy(() => import('./components/About').then(m => ({ default: m.About })));
+const Amenities = React.lazy(() => import('./components/Amenities').then(m => ({ default: m.Amenities })));
+const Gallery = React.lazy(() => import('./components/Gallery').then(m => ({ default: m.Gallery })));
+const Reviews = React.lazy(() => import('./components/Reviews').then(m => ({ default: m.Reviews })));
+const BookingSection = React.lazy(() => import('./components/BookingSection').then(m => ({ default: m.BookingSection })));
+const Footer = React.lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 
 export default function App() {
   return (
@@ -18,13 +20,17 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Amenities />
-        <Gallery />
-        <Reviews />
-        <BookingSection />
+        <Suspense fallback={<div className="h-32 w-full flex items-center justify-center">Loading...</div>}>
+          <About />
+          <Amenities />
+          <Gallery />
+          <Reviews />
+          <BookingSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
