@@ -99,7 +99,7 @@ export function Hero() {
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-ink">
         <video 
           ref={videoRef}
-          src="https://videotourl.com/videos/1783541183229-45147845-2e7c-4459-bd54-6170c67ba073.mp4" 
+          src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" 
           autoPlay={isReducedMotion}
           loop={isReducedMotion}
           muted
