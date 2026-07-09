@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
+import { Play } from 'lucide-react';
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -15,6 +17,28 @@ export function Hero() {
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Mobile Safari requires video to be explicitly muted via JS sometimes
+    video.muted = true;
+    
+    // Unlock video element on mobile by playing it
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // If not in reduced motion mode, pause immediately so we can scrub via scroll
+        if (!isReducedMotion) {
+          video.pause();
+        }
+      }).catch(error => {
+        console.warn("Autoplay was blocked or failed:", error);
+        setShowPlayButton(true);
+      });
+    }
+  }, [isReducedMotion]);
 
   useEffect(() => {
     if (isReducedMotion) {
@@ -99,14 +123,41 @@ export function Hero() {
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-ink">
         <video 
           ref={videoRef}
-          src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" 
-          autoPlay={isReducedMotion}
+          autoPlay
           loop={isReducedMotion}
           muted
           playsInline
           className="w-full h-full object-cover opacity-80"
           preload="auto"
-        />
+          poster="https://images.unsplash.com/photo-1542314831-c6a4d14b4f62?q=80&w=2000&auto=format&fit=crop"
+        >
+          {/* Mobile-optimized breakpoint source */}
+          <source media="(max-width: 768px)" src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" type="video/mp4" />
+          {/* Fallback for H.264 MP4 */}
+          <source src="https://videotourl.com/videos/1783585728041-08b21c5c-2c10-401c-971e-00605b53756e.mp4" type="video/mp4" />
+        </video>
+
+        {/* Fallback Play Button */}
+        {showPlayButton && (
+          <div className="absolute inset-0 z-50 flex items-center justify-center bg-ink/40 backdrop-blur-sm">
+            <button 
+              onClick={() => {
+                const video = videoRef.current;
+                if (video) {
+                  video.muted = true;
+                  video.play().then(() => {
+                    setShowPlayButton(false);
+                    if (!isReducedMotion) video.pause();
+                  });
+                }
+              }}
+              className="p-6 rounded-full bg-accent text-paper hover:scale-110 transition-transform shadow-xl flex items-center justify-center"
+              aria-label="Play video"
+            >
+              <Play className="w-8 h-8 fill-current ml-1" />
+            </button>
+          </div>
+        )}
         
         {/* Scrim for contrast to ensure text is legible over the video */}
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink/80" />

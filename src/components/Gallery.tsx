@@ -63,19 +63,19 @@ export function Gallery() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
-              className="relative shrink-0 snap-center w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] aspect-[4/5] rounded-3xl overflow-hidden group cursor-pointer"
+              className="relative shrink-0 snap-center w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] aspect-[4/5] rounded-3xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-ink/10 group-hover:bg-transparent transition-colors z-10" />
+              <div className="absolute inset-0 bg-ink/10 z-10" />
               <img 
                 src={img.src} 
                 alt={img.title} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
               
               {/* Glass caption */}
-              <div className="absolute bottom-6 left-6 right-6 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-20">
-                <div className="glass px-6 py-4 rounded-xl text-paper">
+              <div className="absolute bottom-6 left-6 right-6 z-20">
+                <div className="glass px-6 py-4 rounded-xl text-paper flex items-center justify-center text-center">
                   <p className="font-serif text-xl shadow-sm drop-shadow-md">{img.title}</p>
                 </div>
               </div>
